@@ -1,4 +1,6 @@
-package com.alpa.test;
+package com.alpa.test.studentProfile;
+
+import com.alpa.test.student.Student;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +27,9 @@ public class StudentProfile {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+    
+    public StudentProfile() {
     }
 
     public StudentProfile(String bio) {

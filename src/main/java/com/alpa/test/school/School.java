@@ -1,6 +1,9 @@
-package com.alpa.test;
+package com.alpa.test.school;
 
 import java.util.List;
+
+import com.alpa.test.student.Student;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,11 +21,12 @@ public class School {
     @OneToMany(
         mappedBy = "school"
     )
+    @JsonManagedReference
     private List<Student> students;
     
 
     public List<Student> getStudents() {
-        return students;
+        return students;  
     }
 
 
@@ -33,6 +37,9 @@ public class School {
 
 
 
+    public School() {
+        
+    }
     public School(String name) {
         this.name = name;
     }
@@ -42,13 +49,13 @@ public class School {
     public Integer getId() {
         return id;
     }
-    public void setId() {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getName() {
         return name;
     }
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 

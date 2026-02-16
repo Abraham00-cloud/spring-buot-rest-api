@@ -1,4 +1,4 @@
-package com.alpa.test;
+package com.alpa.test.student;
 
 import java.util.List;
 
@@ -12,41 +12,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alpa.test.Order;
+import com.alpa.test.OrderRecord;
+
 @RestController
-public class FirstController {
+public class StudentController {
+    private final StudentService studentService;
 
 
-    private final StudentRepository repository;
-
-    public FirstController(StudentRepository repository) {
-        this.repository = repository;
+    
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @PostMapping("/students")
-    public Student post(
-        @RequestBody Student student
+    public StudentResponseDto saveStudent(
+        @RequestBody StudentDto dto
     ) {
-        return repository.save(student);
+        return this.studentService.saveStudent(dto);
     }
 
+   
+
+
     @GetMapping("/students")
-    public List<Student> findAllStudents() {
-        return repository.findAll();
+    public List<StudentResponseDto> findAllStudents() {
+        return this.studentService.findAllStudents();
     }
 
     @GetMapping("/students/{student_id}")
-    public Student getStudentById(
+    public StudentResponseDto getStudentById(
         @PathVariable("student_id") Integer id
     ) {
-        return repository.findById(id)
-                    .orElse(new Student());
+        return this.studentService.getStudentById(id);
     }
 
     @GetMapping("/students/search/{student_name}")
-    public List<Student> getStudentByFirstname(
+    public List<StudentResponseDto> getStudentByFirstname(
         @PathVariable("student_name") String name
     ) {
-        return repository.findAllByFirstnameContaining(name);
+        return this.studentService.getStudentByFirstname(name);
     }
 
     @DeleteMapping("/students/{student_id}")
@@ -54,7 +59,7 @@ public class FirstController {
     public void delete(
         @PathVariable("student_id") Integer id
     ) {
-        repository.deleteById(id);
+        this.studentService.delete(id);
     }
 
 

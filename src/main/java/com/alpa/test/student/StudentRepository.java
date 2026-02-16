@@ -1,4 +1,4 @@
-package com.alpa.test;
+package com.alpa.test.student;
 
 import java.util.List;
 

@@ -1,7 +1,10 @@
-package com.alpa.test;
+package com.alpa.test.student;
+
+import com.alpa.test.school.School;
+import com.alpa.test.studentProfile.StudentProfile;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -9,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "first_table")
@@ -16,8 +20,14 @@ public class Student {
     @Id
     @GeneratedValue
     private Integer id;
+
+    @NotEmpty(message = "firstname should not be empty")
     private String firstname;
+
+    @NotEmpty(message = "lastname should not be empty")
     private String lastname;
+
+    @NotEmpty(message = "email should not be empty")
     private String email;
     private int age;
 
@@ -33,6 +43,7 @@ public class Student {
     @JoinColumn(
         name = "school_id"
     )
+    @JsonBackReference
     private School school;
 
 
