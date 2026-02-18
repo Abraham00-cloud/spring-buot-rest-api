@@ -12,7 +12,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "first_table")
@@ -20,14 +19,8 @@ public class Student {
     @Id
     @GeneratedValue
     private Integer id;
-
-    @NotEmpty(message = "firstname should not be empty")
     private String firstname;
-
-    @NotEmpty(message = "lastname should not be empty")
     private String lastname;
-
-    @NotEmpty(message = "email should not be empty")
     private String email;
     private int age;
 

@@ -1,5 +1,11 @@
 package com.alpa.test.student;
 
-public record StudentDto(Integer id, String firstname, String lastname, String email, Integer schoolId) {
-    
+import jakarta.validation.constraints.NotEmpty;
+
+public record StudentDto(
+    @NotEmpty String firstname,
+    @NotEmpty String lastname,
+    String email,
+    Integer schoolId) {
+
 }
